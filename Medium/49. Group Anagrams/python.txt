@@ -1,0 +1,15 @@
+class Solution:
+    def groupAnagrams(self, strs: List[str]) -> List[List[str]]:
+        
+        solution = []
+        dectionary = {}
+        for word in strs :
+            sorted_string = ''.join(sorted(word, key=str.lower))
+            if sorted_string in dectionary :
+                dectionary[sorted_string].append(word)
+            else :
+                dectionary[sorted_string] = [word]
+
+        for List in dectionary :
+            solution.append(dectionary[List])
+        return solution

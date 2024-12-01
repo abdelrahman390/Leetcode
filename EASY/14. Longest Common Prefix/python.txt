@@ -1,0 +1,27 @@
+class Solution:
+    def longestCommonPrefix(self, strs: List[str]) -> str:
+        
+        lengthOfWords = len(strs)
+        s = sorted(strs, key = len)
+        commonPrefex = ""
+        add = True
+        for i in range(len(s[0])) :
+            letterToTest = ""
+            counter = 0
+            for word in strs :
+                if lengthOfWords == 1 :
+                    commonPrefex = word
+                    break
+
+                if letterToTest == "" :
+                    letterToTest = word[i] 
+                    counter += 1
+                    continue
+
+                if word[i] == letterToTest and add:
+                    counter += 1
+                    if counter == lengthOfWords :
+                        commonPrefex += letterToTest
+                else :
+                    add = False
+        return commonPrefex

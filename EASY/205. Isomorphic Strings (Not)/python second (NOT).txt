@@ -1,0 +1,32 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        prevS = None
+        prevT = None
+        state = True
+        EqualLetters = False
+        # letters = dict.fromkeys(s + t, default_value)
+        letters = {}
+        #  print("up", s[i], t[i], letters)
+        for i in range(len(s)) :
+            if s[i] in letters  :
+                if letters[s[i]] != t[i]:
+                    print("top", letters[s[i]], t[i], letters)
+                    state = False
+                    return False
+            else :
+                letters[s[i]] = t[i]
+                letters[t[i]] = s[i]
+
+        for i in range(len(s)) :
+            if t[i] in letters  :
+                if letters[t[i]] != s[i]:
+                    print("down",letters[t[i]], s[i], letters)
+                    state = False
+                    return False
+            # else :
+                # letters[t[i]] = s[i]
+                # letters[s[i]] = t[i]
+
+                
+            # print("bottom", s[i], t[i], prevS, prevT, state)
+        return state

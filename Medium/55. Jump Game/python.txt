@@ -1,0 +1,21 @@
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        
+        left = 0
+        rangeToLoop = nums[0]
+        while left < len(nums) :
+            NextStep = 0
+
+            if len(nums) == 1 :
+                return True
+            for i in range(rangeToLoop) :
+                IndexNow = left + i +1
+                realValueOfNextStep = nums[IndexNow] - (rangeToLoop - (i +1))  
+                NextStep = max(NextStep, realValueOfNextStep)
+                if IndexNow +1 == len(nums) :
+                    return True
+            rangeToLoop = NextStep
+            if NextStep != 0 :
+                left = IndexNow
+            else :
+                return False

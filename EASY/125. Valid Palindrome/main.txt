@@ -1,0 +1,11 @@
+/**
+ * @param {string} s
+ * @return {boolean}
+ */
+var isPalindrome = function (s) {
+    let string = s.toLowerCase(),
+        cleanedStr = string.replace(/[^a-z0-9]/g, ''),
+        inversedString = cleanedStr.split('').reverse().join('');
+    if (cleanedStr === inversedString) { return true }
+    else { return false }
+};

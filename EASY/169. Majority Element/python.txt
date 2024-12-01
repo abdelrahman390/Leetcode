@@ -1,0 +1,13 @@
+class Solution:
+    def majorityElement(self, nums: List[int]) -> int:
+        uniqeNumbers = {}
+
+        for num in nums :
+            if num in uniqeNumbers :
+                uniqeNumbers[num] = uniqeNumbers[num] + 1
+                print(uniqeNumbers)
+            else :
+                uniqeNumbers[num] = 1
+
+        max_key = max(uniqeNumbers, key=uniqeNumbers.get)
+        return max_key

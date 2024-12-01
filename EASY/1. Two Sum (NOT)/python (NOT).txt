@@ -1,0 +1,25 @@
+class Solution:
+    def twoSum(self, nums: List[int], target: int) -> List[int]:
+        
+        L = 0
+        R = 0
+        # i = 0
+        numsSum = 0
+        prevState = None
+        while numsSum < target or numsSum > target :
+            numsSum += nums[R]
+            print('numsSum', numsSum)
+            if numsSum < target :
+                R += 1
+                prevState = "lessThan"
+            elif numsSum > target:
+                if prevState == "lessThan" :
+                    break
+                numsSum -= nums[L]
+                print(numsSum, nums[L], L)
+                L += 1
+            # i += 1
+            # if numsSum == target :
+                # break
+            print(numsSum, L, R)
+        return [L, R]

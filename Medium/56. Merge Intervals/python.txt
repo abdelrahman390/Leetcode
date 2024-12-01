@@ -1,0 +1,24 @@
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        numOfDeleted = 0
+        copy = intervals
+        copy.sort()
+        for i in range(len(copy)) :
+            if i - numOfDeleted +1 != len(copy):
+                if (
+                    copy[i - numOfDeleted + 1][0] <= copy[i - numOfDeleted][1]
+                    and copy[i - numOfDeleted +1][1] >= copy[i - numOfDeleted][0]
+                ):
+
+                    newIntervalNumbers = copy[i - numOfDeleted] + copy[i - numOfDeleted +1]
+                    newIntervalNumbers.sort()
+                    newInterval = [newIntervalNumbers[0], newIntervalNumbers[-1]]
+                    copy[i - numOfDeleted + 1] = newInterval
+                    copy.remove(copy[i - numOfDeleted])
+                    numOfDeleted += 1
+
+        return copy

@@ -1,0 +1,40 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+
+        targetCopy = target
+        runLoop = True
+
+        solution = float('inf')
+        numsCopy = tuple(nums)
+        rightpointer = 0
+        leftPointer = 0
+
+        if sum(numsCopy) < targetCopy:
+            # runLoop = False
+            return 0
+            # break
+
+        # print(numsCopy)
+        numsSum = None
+        while runLoop != False:
+
+            # print("SOLUTION", len(numsCopy) == rightpointer)
+            if len(numsCopy)  +1 == rightpointer :
+                break
+
+            numsSum 
+
+            # numsSum = sum(numsCopy[leftPointer : rightpointer])
+            print(numsSum, nums[leftPointer : rightpointer], leftPointer , rightpointer, solution)
+            if numsSum >= targetCopy :
+                solution = min(solution, rightpointer - leftPointer)
+                leftPointer += 1
+            else :
+                rightpointer += 1
+
+            # if rightpointer == leftPointer :
+            #     runLoop = False
+            #     break
+            # print(numsSum, leftPointer, rightpointer, solution)
+        return solution if solution != float('inf') else 0
+

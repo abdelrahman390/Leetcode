@@ -1,0 +1,23 @@
+class Solution:
+    def strStr(self, haystack: str, needle: str) -> int:
+        
+        indexOfFirstMatch = -1
+        indexOfNeedle = 0
+        run = True
+        for index, letter in enumerate(haystack):
+            if len(haystack) < len(needle) :
+                break
+            if letter == needle[indexOfNeedle] and run:
+                # print(indexOfNeedle)
+                if indexOfFirstMatch == -1 :
+                    indexOfFirstMatch = index
+                indexOfNeedle += 1
+                # print(indexOfFirstMatch, letter, needle[indexOfNeedle -1])
+                if indexOfNeedle == len(needle) :
+                    break
+                    run = False
+            else :
+                indexOfNeedle = 0
+                indexOfFirstMatch = -1
+            print(indexOfFirstMatch, letter, needle[indexOfNeedle - 1], indexOfNeedle -1)
+        return indexOfFirstMatch

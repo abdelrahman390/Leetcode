@@ -1,0 +1,19 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+
+        targetCopy = target
+        solution = float('inf')
+        numsCopy = tuple(nums)
+        leftPointer = 0
+        numbersSume = 0
+        for rightpointer in range(len(numsCopy)) :
+             
+            numbersSume += numsCopy[rightpointer]
+
+            while numbersSume >= targetCopy :
+                solution = min(solution, rightpointer - leftPointer +1)
+                numbersSume -= numsCopy[leftPointer]
+                leftPointer += 1
+
+        return solution if solution != float('inf') else 0
+

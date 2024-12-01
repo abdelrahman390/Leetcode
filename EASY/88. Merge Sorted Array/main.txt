@@ -1,0 +1,28 @@
+/**
+ * @param {number[]} nums1
+ * @param {number} m
+ * @param {number[]} nums2
+ * @param {number} n
+ * @return {void} Do not return anything, modify nums1 in-place instead.
+ */
+var merge = function (nums1, m, nums2, n) {
+    nums1.length = m,
+        nums2.length = n,
+        nums1.push(...nums2),
+        done = false;
+
+    while (done === false) {
+        let AnyProblem = false
+        nums1.forEach((num, index) => {
+            if (num > nums1[index + 1]) {
+                let deletedNum = nums1[index]
+                nums1.splice(index, 1)
+                nums1.splice(index + 1, 0, deletedNum)
+                AnyProblem = true
+            }
+            if (index === nums1.length - 1 && AnyProblem === false) {
+                done = true
+            }
+        })
+    }
+};

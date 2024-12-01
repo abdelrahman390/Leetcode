@@ -1,0 +1,31 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+
+        targetCopy = target
+        runLoop = True
+
+        # lastSum = float('inf')
+        solution = float('inf')
+        # lastState = None
+        numsCopy = tuple(nums)
+        # firstRemovedNum = None
+        rightpointer = 0
+        leftPointer = 0
+        while runLoop != False:
+
+            if sum(numsCopy) < targetCopy:
+                runLoop = False
+                return 0
+                break
+            
+            numsSum = sum(numsCopy[leftPointer : rightpointer])
+                
+            print(numsSum, leftPointer, rightpointer, solution)
+            if numsSum >= target :
+                solution = min(solution, leftPointer - rightpointer +1)
+                leftPointer += 1
+            else :
+                rightpointer += 1
+
+        # return solution if solution != float('inf') else 0
+

@@ -1,0 +1,52 @@
+class Solution
+    def fullJustify(self, words List[str], maxWidth int) - List[str]
+        
+        WordsTuple = tuple(words)
+        WordsGroup = []
+        wordsCount = 0
+        remainingWidth = maxWidth
+        solutions = []
+        for i in range(len(WordsTuple)) 
+            wordLength = len(WordsTuple[i])
+            # print('wordsCount0', wordsCount)
+            if remainingWidth  wordLength 
+                if len(WordsGroup) != 0 
+                    WordsGroup.append( )
+                    remainingWidth -= 1
+                WordsGroup.append(WordsTuple[i])
+                remainingWidth -= wordLength
+                wordsCount += 1
+            else 
+                if remainingWidth == 0 
+                    .join(WordsGroup)
+                    print(up, WordsGroup)
+                else 
+                    print(wordsCount, wordsCount)
+                    if wordsCount == 1 
+                        SpaceBetweenEachWord = remainingWidth
+                        WordsGroup.append(   int(SpaceBetweenEachWord))
+                        #  print(WordsGroup)
+                    else 
+                        if remainingWidth % 2 == 0 
+                            SpaceBetweenEachWord = remainingWidth  (wordsCount -1)
+                        # else 
+                        #     print(wordsCount)
+                            # SpaceBetweenEachWord = remainingWidth  (wordsCount -2)
+
+                        for k in range(len(WordsGroup)) 
+                            if WordsGroup[k] ==    
+                                WordsGroup[k] =    int(SpaceBetweenEachWord +1)
+                    print(WordsGroup)
+                    result = .join(WordsGroup)
+                    solutions.append(result)
+                        
+
+                SpaceBetweenEachWord = 0
+                wordsCount = 1
+                WordsGroup = []
+                WordsGroup.append(WordsTuple[i])
+                remainingWidth = maxWidth - len(WordsTuple[i])
+                # print(WordsTuple[i], WordsTuple[i])
+                # print(SpaceBetweenEachWord, SpaceBetweenEachWord)
+                print(solutions, solutions)
+            # print(WordsGroup, remainingWidth)

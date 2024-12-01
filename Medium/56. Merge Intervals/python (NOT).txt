@@ -1,0 +1,36 @@
+class Solution(object):
+    def merge(self, intervals):
+        """
+        :type intervals: List[List[int]]
+        :rtype: List[List[int]]
+        """
+        solution = []
+        numOfDeleted = 0
+        copy = intervals
+        copy.sort()
+        for interval in copy:
+            print(copy)
+            if copy.index(interval - numOfDeleted) != len(copy):
+                if copy.index(interval - numOfDeleted) + 1 == len(copy):
+                    print("up", intervals[intervals.index(interval)])
+                    solution.append(copy[copy.index(interval)])
+                else:
+                    # print(interval, intervals[intervals.index(interval) + 1])
+                    if (
+                        copy[copy.index(interval) + 1][0] <= interval[1]
+                        and copy[copy.index(interval) + 1][1] >= interval[0]
+                    ):
+                        allNumbers = interval + copy[copy.index(interval) + 1]
+                        allNumbers.sort()
+                        solution.append(
+                            [allNumbers[0], allNumbers[len(allNumbers) - 1]]
+                        )
+                        # print(intervals[intervals.index(interval) + 1])
+                        # print(intervals[intervals.index(interval)])
+                        copy.remove(copy[copy.index(interval) + 1])
+
+                    else:
+                        # print("max down", interval)
+                        solution.append(interval)
+
+        return solution

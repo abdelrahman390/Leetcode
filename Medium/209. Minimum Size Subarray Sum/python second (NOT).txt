@@ -1,0 +1,81 @@
+class Solution:
+    def minSubArrayLen(self, target: int, nums: List[int]) -> int:
+
+        targetCopy = target
+        runLoop = True
+
+        lastSum = float('inf')
+        solution = float('inf')
+        lastState = None
+        numsCopy = nums
+        firstRemovedNum = None
+        rightpointer = 0
+        while runLoop != False:
+
+            # print("Top", solution, targetCopy, "sum", sum(numsCopy[:rightpointer]), "Last sum", lastSum)
+            print("Top", solution, sum(numsCopy[:rightpointer]),"right+1" , sum(numsCopy[:rightpointer+1]), "Last sum", lastSum)
+            if targetCopy <= sum(numsCopy[:rightpointer]) :
+                print("^" *20)
+                lastSum = sum(numsCopy[:rightpointer])
+                # print("list", numsCopy)
+                numsCopy.pop(0)
+                continue
+            else :
+                continue
+                # print("Top", sum(numsCopy[:rightpointer]), len(numsCopy[:rightpointer]))
+
+            morethanPosition = float('inf')
+            leftpointer = 0
+            rightpointer = math.ceil(len(numsCopy) / 2)
+
+            if sum(numsCopy) < targetCopy:
+                runLoop = False
+                break
+
+            if len(numsCopy) == 1 :
+                runLoop = False
+
+            # print(sum(numsCopy))
+            for i in range(len(numsCopy)) :
+                if len(numsCopy) == 1 :
+                    runLoop = False
+                numbersSum = sum(numsCopy[:rightpointer])
+                print(numbersSum >= targetCopy, leftpointer, rightpointer, morethanPosition,numbersSum , solution)
+                if numbersSum == targetCopy :
+                    # print("solution", solution, rightpointer)
+                    solution = min(solution, +rightpointer)
+                    # numsCopy.pop()
+                    break 
+                elif numbersSum > targetCopy :
+                    # print("sum >>> tagret ", lastState == "morethan" and leftpointer == rightpointer - 1)
+                    if lastState == "morethan" and leftpointer == rightpointer - 1 :
+                        # print("solution", solution, rightpointer)
+                        solution = min(solution, +rightpointer)
+                        # numsCopy.pop()
+                        break
+                    else :
+                        # print("solution", solution, rightpointer)
+                        morethanPosition = min(morethanPosition, rightpointer)
+                        solution = min(solution, +rightpointer)
+                        lastState = "morethan"
+                        rightpointer = math.ceil((leftpointer + rightpointer) / 2)
+
+                elif numbersSum < targetCopy :
+                    leftpointer = rightpointer
+                    if morethanPosition != float('inf') :
+                        rightpointer = rightpointer + math.ceil((morethanPosition - rightpointer ) / 2)
+                    else :
+                        rightpointer = rightpointer + math.ceil(len(numsCopy[rightpointer:]) / 2)
+                    # print("morethanPosition", morethanPosition, "new right", rightpointer)
+
+                    lastState = "lessthan"
+            print("^" *20, solution, "sum", sum(numsCopy[:rightpointer]), sum(numsCopy[:rightpointer-1]), "Last sum", lastSum)
+            lastSum = sum(numsCopy[:rightpointer])
+            firstRemovedNum = numsCopy[0]
+            numsCopy.pop(0)
+        # if solution == float('inf') :
+        #     return 0
+        # else :
+        #     return solution
+        return solution if solution != float('inf') else 0
+

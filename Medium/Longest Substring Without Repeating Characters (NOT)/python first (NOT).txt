@@ -1,0 +1,22 @@
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        Solution = 0
+        currentWord = ""
+        sTuple = list(s)
+        left = 0
+        while len(sTuple) != left :
+            print(sTuple[left:], Solution, currentWord, left)
+            for i in range(len(sTuple)  - left) :
+                if sTuple[i + left] not in currentWord :
+                    currentWord += sTuple[i + left]
+                    Solution = max(Solution, len(currentWord))
+                else :
+                    currentWord = sTuple[i + left]
+                    Solution = max(Solution, len(currentWord))
+            currentWord = ""
+            left += 1
+            print("'" * 20)
+
+        return Solution
+
+# time complixty = O(n**2)

@@ -1,0 +1,19 @@
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        buy = None
+        sell = None
+        max_profit = 0
+        for num in prices :
+            if buy == None and sell == None :
+                buy = num
+                sell = num
+                continue   
+            if num < buy :
+                buy = num 
+                sell = 0
+                continue   
+            if num > sell :
+                sell = num
+            max_profit = max(max_profit, sell - buy )
+        return max_profit
+

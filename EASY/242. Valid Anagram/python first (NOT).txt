@@ -1,0 +1,15 @@
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        
+        sWord = list(s)
+        if len(sWord) != len(t) :
+            return False
+        for i in range(len(sWord)) :
+            print(sWord, t)
+            if t[i] in sWord :
+                sWord.remove(t[i])
+            else :
+                return False
+        return True
+        
+

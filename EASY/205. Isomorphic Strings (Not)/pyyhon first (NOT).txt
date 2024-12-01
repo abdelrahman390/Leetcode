@@ -1,0 +1,50 @@
+class Solution:
+    def isIsomorphic(self, s: str, t: str) -> bool:
+        prevS = None
+        prevT = None
+        state = True
+        EqualLetters = False
+        letters = {}
+        for i in range(len(s)) :
+            print("up", s[i], t[i], prevS, prevT, state, EqualLetters, letters)
+            if i == 0 :
+                # if s[i] == t[i] :
+                if s[i] == t[i] :
+                    EqualLetters = True
+                letters[s[i]] = t[i]
+                prevS = s[i]
+                prevT = t[i]
+                # else :
+                #     state = False
+                #     return False
+            else :
+                if s[i] == prevS :
+                    if t[i] == prevT :
+                        prevS = s[i]
+                        prevT = t[i]
+                        # break
+                    else :
+                        state = False
+                        return False
+                else :
+                    if s[i] == t[i] :
+                        if EqualLetters == False :
+                            state = False
+                            return False
+                        EqualLetters = True
+                    elif s[i] != t[i] and EqualLetters :
+                        state = False
+                        return False
+                    if s[i] in letters :
+                        if letters[s[i]] != t[i] :
+                            state = False
+                            return False
+                    else :
+                        letters[s[i]] = t[i]
+                        prevS = s[i]
+                        prevT = t[i]
+                    # else :
+                    #     state = False
+                    #     return False
+            print("bottom", s[i], t[i], prevS, prevT, state)
+        return state

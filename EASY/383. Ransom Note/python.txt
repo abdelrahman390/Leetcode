@@ -1,0 +1,22 @@
+class Solution(object):
+    def canConstruct(self, ransomNote, magazine):
+        """
+        :type ransomNote: str
+        :type magazine: str
+        :rtype: bool
+        """
+        ranLength = len(ransomNote)
+        splitedMag = list(str(magazine))
+        splitedran = list(str(ransomNote))
+        done = 0
+
+        for letter in splitedran:
+            if letter in splitedMag :
+                done += 1
+                indexOfWantedWord = splitedMag.index(letter)
+                splitedMag.pop(indexOfWantedWord)
+
+        if done == ranLength: 
+            return True
+        else :
+            return False

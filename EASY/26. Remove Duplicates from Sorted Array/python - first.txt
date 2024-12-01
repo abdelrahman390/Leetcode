@@ -1,0 +1,12 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        NumOfRemoved = 0
+        for i in range(len(nums)) :
+            print(nums[i - NumOfRemoved])
+            if i - NumOfRemoved == len(nums) -1 or len(nums) == 1:
+                break
+            if nums[i - NumOfRemoved] == nums[i - NumOfRemoved + 1] :
+                nums.remove(nums[i - NumOfRemoved])
+                NumOfRemoved += 1
+
+

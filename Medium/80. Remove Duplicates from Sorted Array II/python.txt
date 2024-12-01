@@ -1,0 +1,16 @@
+class Solution:
+    def removeDuplicates(self, nums: List[int]) -> int:
+        NumOfRemoved = 0
+        prev = None
+        FirstDuplicate = True
+        for i in range(len(nums)) :
+            if nums[i - NumOfRemoved] == prev and FirstDuplicate :
+                FirstDuplicate = False
+            elif nums[i - NumOfRemoved] == prev and FirstDuplicate == False :
+                nums.remove(nums[i - NumOfRemoved])
+                NumOfRemoved += 1
+            else :
+                FirstDuplicate = True
+            prev = nums[i - NumOfRemoved]
+       // return len(nums)
+

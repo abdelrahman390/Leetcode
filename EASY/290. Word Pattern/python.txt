@@ -1,0 +1,19 @@
+class Solution:
+    def wordPattern(self, pattern: str, s: str) -> bool:
+        state = True
+        letters = {}
+        words = s.split() 
+        aList = []
+        if len(words) != len(pattern) :
+            return False
+        for i in range(len(words)) :
+            if pattern[i] in letters  :
+                if letters[pattern[i]] != words[i]:
+                    return False
+            else :
+                if words[i] in aList :
+                    return False
+                else :
+                    letters[pattern[i]] = words[i]
+                    aList.append(words[i])
+        return state
